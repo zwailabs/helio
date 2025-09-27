@@ -100,7 +100,7 @@ export class TitleService {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            model: 'llama3-8b-8192',
+            model: 'llama-3.1-8b-instant',
             messages: messages,
             max_tokens: 50,
             temperature: 0.3,
@@ -194,7 +194,7 @@ Generate a short title for this message: "${userMessage}"`;
     for (let i = 0; i < apiKeys.length; i++) {
       const apiKey = apiKeys[i];
       try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
