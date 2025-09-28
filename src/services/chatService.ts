@@ -505,7 +505,18 @@ export class ChatService {
         throw error; // Re-throw if no fallback available
       } catch (fallbackError) {
         console.error('All APIs failed:', error, fallbackError);
-        throw new Error(`AI service failed. Please check your API keys in settings.`);
+        
+        // Check if the error is related to authentication vs service issues
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        const isAuthError = errorMessage.toLowerCase().includes('unauthorized') || 
+                           errorMessage.toLowerCase().includes('invalid') ||
+                           errorMessage.toLowerCase().includes('api key');
+        
+        if (isAuthError) {
+          throw new Error(`Authentication failed. Please check your API keys in settings.`);
+        } else {
+          throw new Error(`AI service temporarily unavailable. The service may be experiencing high load or maintenance. Please try again in a moment.`);
+        }
       }
     }
   }

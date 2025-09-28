@@ -246,7 +246,7 @@ export const useChatInputHandling = ({
       
       // Clear the loading timeout
       if (loadingTimeoutRef.current) {
-        clearTimeout(loadingTimeoutRef.current);
+        content: error instanceof Error ? error.message : 'Something went wrong. Please try again.',
         loadingTimeoutRef.current = null;
       }
       setIsLoading(false);

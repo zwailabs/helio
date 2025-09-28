@@ -195,7 +195,7 @@ export const useMessageHandling = ({
               console.error('❌ Error getting AI response:', error);
               aiResponse = {
                 id: '2',
-                content: `Error: ${error instanceof Error ? error.message : 'Failed to get response from AI service. Please check your API keys.'}`,
+                content: `${error instanceof Error ? error.message : 'Failed to get response from AI service. Please try again.'}`,
                 sender: 'ai',
                 timestamp: new Date(),
                 shouldAnimate: true // Enable animation even for error messages

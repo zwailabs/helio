@@ -819,7 +819,7 @@ const FileChatSection = ({ selectedFile, onClose }: FileChatSectionProps) => {
       
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: `Oops, something went wrong. Check your API keys in settings?`,
+        content: error instanceof Error ? error.message : 'Something went wrong. Please try again.',
         sender: 'ai',
         timestamp: new Date()
       };
